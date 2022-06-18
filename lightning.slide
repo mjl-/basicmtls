@@ -1,0 +1,45 @@
+# Challenge: Most basic mutually authenticated secure connection
+
+Mechiel Lukkien
+Jun 2022
+mechiel@ueber.net
+
+https://github.com/mjl-/basicmtls
+
+## Problem statement
+
+- TCP is plain
+- TLS brings CA certs/keys circus, and x509 with expirations, host names and general obscurity
+
+## Back to basics
+
+- Public key as identity
+- ed25519 private key: 32 bytes, public key: 32 bytes
+
+Example:
+
+	lVGQNUHZAndcMqDhe2Q0GVlkrvtU2ox4v85cIQZbAz4
+
+That's all we need and care about!
+
+## A Solution
+
+- With crypto/tls, because available in standard library
+- Just need the right tls.Config{} for use with tls.Dial and tls.Listen
+
+## Code & demo
+
+Live demo!!
+
+## Challenge
+
+What is your most basic solution?
+
+## More: Inspiration
+
+Inspiration was https://github.com/mjl-/nox:
+
+- noise protocol (like wireguard)
+- optional known hosts file and TOFU (like ssh)
+- optional keys/config from nearby .nox directory (like .git)
+- optional Dial address syntax that includes keys (for easy configs)
