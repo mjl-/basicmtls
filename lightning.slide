@@ -1,20 +1,19 @@
 # Challenge: Most basic mutually authenticated secure connection
 
 Mechiel Lukkien
-Jun 2022
+June 2022
 mechiel@ueber.net
 
 https://github.com/mjl-/basicmtls
 
-## Problem statement
+## Suggestion: TLS with client auth and private CA
 
-- TCP is plain
-- TLS brings CA certs/keys circus, and x509 with expirations, host names and general obscurity
+- ca, csr, revocation, expiration, host name validation, pem/pkcs/x509
 
-## Back to basics
+## More basic
 
-- Public key as identity
-- ed25519 private key: 32 bytes, public key: 32 bytes
+- Inspired by wireguard: public key as identity
+- ed25519: 32 bytes private key, 32 bytes public key
 
 Example:
 
@@ -22,7 +21,7 @@ Example:
 
 That's all we need and care about!
 
-## A Solution
+## Implementation
 
 - With crypto/tls, because available in standard library
 - Just need the right tls.Config{} for use with tls.Dial and tls.Listen
@@ -35,7 +34,7 @@ Live demo!!
 
 What is your most basic solution?
 
-## More: Inspiration
+## More
 
 Inspiration was https://github.com/mjl-/nox:
 

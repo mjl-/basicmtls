@@ -17,7 +17,6 @@ import (
 	"math/big"
 	"net"
 	"os"
-	"time"
 )
 
 func usage() {
@@ -209,9 +208,7 @@ func readPubkey(path string) ed25519.PublicKey {
 // but TLS needs x509 certificates...
 func makeCert(privKey ed25519.PrivateKey) tls.Certificate {
 	template := &x509.Certificate{
-		NotBefore:    time.Time{},                    // Since dawn of (computer) time.
-		NotAfter:     time.Now().AddDate(1000, 0, 0), // 1000 years should be enough?
-		SerialNumber: big.NewInt(1),                  // Required field...
+		SerialNumber: big.NewInt(1), // Required field...
 	}
 	localCertBuf, err := x509.CreateCertificate(rand.Reader, template, template, privKey.Public(), privKey)
 	if err != nil {
